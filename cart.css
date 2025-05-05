@@ -1,0 +1,171 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1f2937;
+  color: white;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+.shop-header .logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.shop-header nav a {
+  margin: 0 12px;
+  color: white;
+  text-decoration: none;
+}
+.shop-header nav a:hover {
+  border-bottom: 2px solid #4CAF50;
+}
+.cart {
+  position: relative;
+  color: white;
+}
+.cart-count {
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}
+
+/* Main Cart Styles */
+.cart-main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cart-items-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+}
+.cart-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+.item-info {
+  flex-grow: 1;
+}
+.item-info h4 {
+  margin: 0 0 8px;
+}
+.item-info p {
+  margin: 0;
+  font-weight: 600;
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.quantity-controls button {
+  padding: 4px 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+.remove-btn {
+  background: none;
+  border: none;
+  color: crimson;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Summary */
+.cart-summary {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  text-align: center;
+  font-size: 18px;
+}
+
+/* Buttons Group */
+.cart-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin: 30px auto;
+}
+
+/* Shared Button Base */
+.cart-buttons button,
+.cart-buttons a {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+  min-width: 180px;
+}
+
+/* Checkout Button */
+.btn-checkout {
+  background: linear-gradient(135deg, #4CAF50, #388E3C);
+  color: white;
+}
+.btn-checkout:hover {
+  background: linear-gradient(135deg, #45a049, #2e7d32);
+  transform: scale(1.05);
+}
+
+/* Clear Cart Button */
+.btn-clear {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  color: white;
+}
+.btn-clear:hover {
+  background: linear-gradient(135deg, #c0392b, #922b21);
+  transform: scale(1.05);
+}
+
+/* Back to Shopping Button */
+.btn-back {
+  background: linear-gradient(135deg, #3498db, #2c80b4);
+  color: white;
+}
+.btn-back:hover {
+  background: linear-gradient(135deg, #2c80b4, #21618c);
+  transform: scale(1.05);
+}

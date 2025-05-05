@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Search</title>
+  <link rel="stylesheet" href="search.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="search-page-container">
+    <!-- Redesigned Search Bar -->
+    <div class="search-container">
+      <i class="ri-search-line search-icon"></i>
+      <input type="text" id="searchInput" placeholder="Search products by name..." />
+      <i class="ri-close-circle-line cancel-icon" id="cancelIcon"></i>
+    </div>
+
+    <!-- Suggested Names -->
+    <div class="suggestion-list-container" id="suggestionList"></div>
+
+    <!-- Matching Products -->
+    <div id="matchingProductsSection" class="hidden">
+      <div class="matching-products-header">Matching Products</div>
+      <div class="matching-products-container" id="matchingProductsContainer"></div>
+    </div>
+  </div>
+
+  <script src="search.js"></script>
+</body>
+</html>

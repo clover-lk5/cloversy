@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GadgetNest | Product Details</title>
+  <link rel="stylesheet" href="product.css">
+</head>
+<body>
+  <div class="product-container">
+    <div class="image-section">
+      <img id="productImage" alt="Product Image">
+    </div>
+    <div class="info-section">
+      <h2 id="productName"></h2>
+      <p id="productPrice"></p>
+      <p id="productDescription"></p>
+      <div class="quantity-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" min="1" value="1">
+      </div>
+      <button id="addToCartBtn">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Recommended Section -->
+  <div class="recommended-section">
+    <h3>You May Also Like</h3>
+    <div id="recommendedContainer" class="recommended-grid"></div>
+  </div>
+
+  <script src="product.js"></script>
+</body>
+</html>

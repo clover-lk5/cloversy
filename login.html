@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login or Sign Up - GadgetNest</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="form-wrapper">
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="form active">
+        <h1>Sign-In</h1>
+        <label>Email or mobile phone number</label>
+        <input type="text" id="loginEmail" required />
+
+        <label>Password</label>
+        <input type="password" id="loginPassword" required />
+
+        <button type="submit">Login</button>
+        <p class="switch-text">New to GadgetNest? <span id="showSignup">Create account</span></p>
+        <p class="alert" id="loginAlert"></p>
+      </form>
+
+      <!-- SIGN-UP FORM -->
+      <form id="signupForm" class="form">
+        <h1>Create Account</h1>
+        <label>Full Name</label>
+        <input type="text" id="signupName" required />
+
+        <label>Email</label>
+        <input type="email" id="signupEmail" required />
+
+        <label>Password</label>
+        <input type="password" id="signupPassword" required />
+
+        <button type="submit">Sign Up</button>
+        <p class="switch-text">Already have an account? <span id="showLogin">Sign in</span></p>
+        <p class="alert" id="signupAlert"></p>
+      </form>
+    </div>
+    <footer>
+      <p>Conditions of Use | Privacy Notice | Help</p>
+      <p>&copy; 2025, GadgetNest.com</p>
+    </footer>
+  </div>
+  <script src="login.js"></script>
+</body>
+</html>

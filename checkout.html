@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - GadgetNest</title>
+  <link rel="stylesheet" href="checkout.css"/>
+</head>
+<body>
+  <div class="checkout-container">
+    <h1>Checkout</h1>
+
+      <form id="checkout-form">
+        <div class="form-group">
+          <input type="text" id="name" name="name" placeholder=" " required />
+          <label for="name">Full Name</label>
+        </div>
+      
+        <div class="form-group">
+          <input type="email" id="email" name="email" placeholder=" " required />
+          <label for="email">Email Address</label>
+        </div>
+      
+        <div class="form-group">
+          <input type="text" id="address" name="address" placeholder=" " required />
+          <label for="address">Shipping Address</label>
+        </div>
+      
+        <div class="form-group">
+          <textarea id="notes" name="notes" placeholder=" "></textarea>
+          <label for="notes">Additional Notes (Optional)</label>
+        </div>
+
+        <!-- Shipping Info Section -->
+        <div class="shipping-info">
+            <label for="regionSelect">Select Your Region</label>
+            <select id="regionSelect">
+            <option value="">Select Region</option>
+            <option value="domestic">Domestic (within your country)</option>
+            <option value="international">International (outside your country)</option>
+            <option value="europe">Europe</option>
+            </select>
+            
+            <p id="shippingEstimate">Estimated delivery time will appear here.</p>
+        </div>
+      
+        <div class="payment-options">
+          <p style="margin-bottom: 10px; font-weight: bold;">Choose Payment Method:</p>
+      
+          <label>
+            <input type="radio" name="payment" value="PayPal" required />
+            PayPal
+          </label>
+      
+          <label>
+            <input type="radio" name="payment" value="Bank Transfer" />
+            Bank Transfer
+          </label>
+      
+          <label>
+            <input type="radio" name="payment" value="Debit/Credit Card" />
+            Debit/Credit Card
+          </label>
+      
+          <label>
+            <input type="radio" name="payment" value="Cash on Delivery" />
+            Cash on Delivery
+          </label>
+        </div>
+      
+
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div id="summary-list"></div>
+        <p class="total">Total: $<span id="totalAmount">0.00</span></p>
+      </div>
+
+      <div class="buttons-container">
+        <button type="button" class="back-to-shopping-btn" onclick="window.location.href='shop.html'">Back to Shopping</button>
+        <button type="button" class="clear-all-btn" onclick="clearCart()">Clear All</button>
+        <button type="submit" class="confirm-send-btn">Confirm & Send</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="checkout.js"></script>
+</body>
+</html>

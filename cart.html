@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - GadgetNest</title>
+  <link rel="stylesheet" href="cart.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <header class="shop-header">
+    <div class="logo">GadgetNest</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="pages.html">Pages</a>
+      <a href="about.html">About</a>
+    </nav>
+    <a class="cart" href="cart.html">
+      <i class="ri-shopping-bag-line cart-icon"></i>
+      <span class="cart-count">0</span>
+    </a>
+  </header>
+
+  <main class="cart-main">
+    <h1>Your Cart</h1>
+    <div id="cart-items" class="cart-items-container"></div>
+
+    <div class="cart-summary">
+      <h3>Summary</h3>
+      <p><strong>Total Items:</strong> <span id="totalItems">0</span></p>
+      <p><strong>Total Price:</strong> ₦<span id="totalPrice">0</span></p>
+    </div>
+
+    <div class="cart-buttons">
+      <a href="shop.html" class="btn-back">← Back to Shopping</a>
+      <button class="btn-clear" onclick="clearCart()">Clear Cart</button>
+      <button class="btn-checkout" onclick="goToCheckout()">Proceed to Checkout</button>
+    </div>
+  </main>
+
+  <script src="cart.js"></script>
+</body>
+</html>

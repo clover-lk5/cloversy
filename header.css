@@ -1,0 +1,359 @@
+/* ===========================
+   Reset & Base Styles
+   =========================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+/* ===========================
+   Header Container
+   =========================== */
+header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 5px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #222;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1000;
+}
+
+header.scrolled {
+  background: rgba(34, 34, 34, 0.95);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===========================
+   CSS-Based Logo
+   =========================== */
+   .logo {
+    margin: none;
+    width: auto;
+    height: 70px; /* Adjust as needed */
+    padding: 5px;
+    background-color: white;
+    border: 2px solid #007bff; /* Blue border, change to your preferred color */
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .logo:hover {
+    border: 2px solid orange;
+    transform: scale(1.05);
+  }
+/* ===========================
+   Navigation Links
+   =========================== */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  transition: transform 0.3s ease;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  font-size: large;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 800;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: blue;
+  transition: width 0.5s ease;
+}
+
+.nav-links a:hover {
+  padding: 0px;
+  border-radius: 5px;
+  border: 2px solid #ffa500;
+  color: #ffa500;
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ===========================
+   Dropdown Menu (Click)
+   =========================== */
+.dropdown-menu {
+  position: absolute;
+  top: 140%;
+  left: 0;
+  background: #333;
+  border-radius: 6px;
+  display: none;
+  flex-direction: column;
+  min-width: 140px;
+  z-index: 100;
+}
+
+.dropdown-menu a {
+  padding: 10px 15px;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+  background: #444;
+}
+
+/* ===========================
+   Mobile Menu Toggle
+   =========================== */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 240px;
+    background: #222;
+    flex-direction: column;
+    padding: 80px 20px;
+    transform: translateX(100%);
+  }
+
+  .nav-links.show {
+    transform: translateX(0);
+  }
+
+  .nav-links li {
+    margin: 16px 0;
+    text-align: center;
+  }
+
+  /* Dropdown inside mobile */
+  .dropdown-menu {
+    position: static;
+    display: none;
+    background: transparent;
+    min-width: auto;
+    border-radius: 0;
+  }
+}
+
+/* ===========================
+   Animations
+   =========================== */
+@keyframes slideBorder {
+  0%   { transform: scaleX(0); }
+  50%  { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+  transition: 1s;
+}
+
+.menu-toggle:focus {
+  opacity: 0;
+  transition: 1s;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 250px;
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  z-index: 1000;
+  transition: right 0.4s ease-in-out;
+}
+
+.side-menu.show-menu {
+  right: 0;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #fff;
+  float: right;
+  cursor: pointer;
+}
+
+.side-menu-links {
+  list-style: none;
+  margin-top: 60px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.side-menu-links li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul {
+    display: none;
+  }
+ 
+}
+
+@keyframes pulse {
+  0% {
+      transform: scale(1);
+  }
+  50% {
+      transform: scale(1.2);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+
+.glow {
+  animation: pulse 0.5s ease;
+  color: orange;
+}
+
+.cart-icon i {
+  color: black; /* Default color */
+  transition: color 0.3s ease;
+}
+
+.cart-icon i.cart-filled {
+  color: green; /* Turns green when filled */
+}
+
+.glow-animate {
+  animation: glowScale 0.6s ease-in-out;
+}
+
+@keyframes glowScale {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0px orange;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px orange;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px orange;
+  }
+}
+
+.cart-bump {
+  animation: bump 0.5s ease;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+    filter: drop-shadow(0 0 5px orange);
+  }
+  100% {
+    transform: scale(1);
+    filter: none;
+  }
+}
+
+/* Header Search Bar Styles */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 250px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 2px solid #555;
+  border-radius: 30px;
+  background-color: #fff;
+  transition: width 0.3s ease, padding 0.3s ease;
+  color: #333;
+}
+
+.search-bar:focus {
+  outline: none;
+  width: 300px;
+  padding-left: 40px;
+  border-color: #ffa500;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  color: #555;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* Mobile Search Bar Adjustment */
+@media (max-width: 768px) {
+  .search-container {
+    display: none; /* Hide for mobile, can make it toggleable later */
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
