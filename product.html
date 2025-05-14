@@ -1,34 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GadgetNest | Product Details</title>
-  <link rel="stylesheet" href="product.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1c1c1c;
+      color: #fff;
+      margin: 0;
+      padding: 0;
+    }.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  background-color: #2a2a2a;
+  max-width: 1000px;
+  margin: 2rem auto;
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  transition: all 0.4s ease-in-out;
+}
+
+.product-container img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-right: 2rem;
+  transition: transform 0.3s;
+}
+.product-container img:hover {
+  transform: scale(1.05);
+}
+
+.product-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.product-info h1 {
+  color: #ff3c3c;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.product-info p {
+  margin: 0.5rem 0;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.quantity-controls button {
+  background-color: #ff3c3c;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  padding: 0.3rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.quantity-controls input {
+  width: 50px;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #444;
+  background-color: #333;
+  color: white;
+  border-radius: 0.3rem;
+}
+
+#addToCartBtn {
+  background-color: #b30000;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+#addToCartBtn:hover {
+  background-color: #ff3c3c;
+}
+
+.recommend-title {
+  text-align: center;
+  color: #ff3c3c;
+  font-size: 1.8rem;
+  margin-top: 3rem;
+}
+
+#recommendations {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem auto;
+}
+
+.recommend-item {
+  background-color: #2a2a2a;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  cursor: pointer;
+  width: 150px;
+  box-shadow: 0 0 10px rgba(255, 60, 60, 0.1);
+  transition: transform 0.3s, background-color 0.3s;
+}
+.recommend-item:hover {
+  transform: translateY(-5px);
+  background-color: #3a3a3a;
+}
+
+.recommend-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.not-found {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ff3c3c;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-container img {
+    margin-bottom: 1.5rem;
+    margin-right: 0;
+  }
+}
+
+  </style>
 </head>
 <body>
-  <div class="product-container">
-    <div class="image-section">
-      <img id="productImage" alt="Product Image">
-    </div>
-    <div class="info-section">
-      <h2 id="productName"></h2>
-      <p id="productPrice"></p>
-      <p id="productDescription"></p>
-      <div class="quantity-group">
-        <label for="quantity">Quantity:</label>
-        <input type="number" id="quantity" min="1" value="1">
+  <div class="product-container" style="display: none">
+    <img id="productImage" alt="Product Image" />
+    <div class="product-info">
+      <h1 id="productName">Product Name</h1>
+      <p id="productPrice">₦0</p>
+      <p id="productDescription">Product description will appear here.</p>
+      <div class="quantity-controls">
+        <button onclick="changeQty(-1)">−</button>
+        <input type="number" id="quantity" value="1" min="1" />
+        <button onclick="changeQty(1)">+</button>
       </div>
       <button id="addToCartBtn">Add to Cart</button>
     </div>
-  </div>
-
-  <!-- Recommended Section -->
-  <div class="recommended-section">
-    <h3>You May Also Like</h3>
-    <div id="recommendedContainer" class="recommended-grid"></div>
-  </div>
-
-  <script src="product.js"></script>
-</body>
+  </div>  <div id="notFoundMessage" class="not-found">Product not found!</div>
+  <div class="recommend-title">Trending Now</div>
+  <div id="recommendations"></div>  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const products = JSON.parse(localStorage.getItem("allProducts")) || [];
+  
+      function getProductIdFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return parseInt(urlParams.get("id"));
+      }
+  
+      function changeQty(delta) {
+        const qtyInput = document.getElementById("quantity");
+        const val = parseInt(qtyInput.value);
+        if (!isNaN(val)) {
+          const newVal = Math.max(1, val + delta);
+          qtyInput.value = newVal;
+        }
+      }
+  
+      function displayProduct(product) {
+        if (!product) {
+          document.querySelector(".product-container").style.display = "none";
+          document.getElementById("notFoundMessage").style.display = "block";
+          document.querySelector(".recommend-title").style.display = "none";
+          return;
+        }
+  
+        document.querySelector(".product-container").style.display = "flex";
+        document.getElementById("notFoundMessage").style.display = "none";
+        document.querySelector(".recommend-title").style.display = "block";
+  
+        document.getElementById("productImage").src = product.image;
+        document.getElementById("productName").textContent = product.name;
+        document.getElementById("productPrice").textContent = "$" + product.price.toLocaleString();
+        document.getElementById("productDescription").textContent = product.description || "No description available.";
+  
+        // Add to cart handler
+        const addToCartBtn = document.getElementById("addToCartBtn");
+        if (addToCartBtn) {
+          addToCartBtn.onclick = () => {
+            const quantity = parseInt(document.getElementById("quantity").value);
+            if (isNaN(quantity) || quantity <= 0) return alert("Enter a valid quantity");
+  
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            const existing = cart.find(item => item.id === product.id);
+            if (existing) {
+              existing.quantity += quantity;
+            } else {
+              cart.push({ ...product, quantity });
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert("Added to cart!");
+          };
+        }
+      }
+  
+      function loadRecommendations(currentId) {
+        const recContainer = document.getElementById("recommendations");
+        recContainer.innerHTML = "";
+  
+        const shuffled = products.filter(p => p.id !== currentId).sort(() => 0.5 - Math.random());
+        const recommended = shuffled.slice(0, 5);
+  
+        recommended.forEach(p => {
+          const div = document.createElement("div");
+          div.className = "recommend-item";
+          div.innerHTML = `
+            <img src="${p.image}" alt="${p.name}" />
+            <p>${p.name}</p>
+          `;
+          div.addEventListener("click", () => switchProduct(p));
+          recContainer.appendChild(div);
+        });
+      }
+  
+      function switchProduct(product) {
+        document.querySelector(".product-container").style.opacity = 0;
+        setTimeout(() => {
+          displayProduct(product);
+          loadRecommendations(product.id);
+          document.querySelector(".product-container").style.opacity = 1;
+        }, 200);
+      }
+  
+      const productId = getProductIdFromURL();
+      const selectedProduct = products.find(p => p.id === productId);
+      displayProduct(selectedProduct);
+      loadRecommendations(productId);
+  
+      // Make changeQty globally accessible for inline HTML buttons
+      window.changeQty = changeQty;
+    });
+  </script>
+  </body>
 </html>
